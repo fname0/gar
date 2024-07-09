@@ -9,7 +9,7 @@ PHP не ниже 8.1, утилита wget
 Клонируйте приложение или скачайте его архивом
 
 ```shell
-git clone git@github.com:IggorGor/gar.git
+git clone git@github.com:fname0/gar.git
 ```
 
 Перейдите в каталог с приложением и настройте права на каталоги
