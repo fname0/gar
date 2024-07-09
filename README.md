@@ -30,7 +30,7 @@ chmod -R 775 bootstrap/cache
 composer install --no-dev --optimize-autoloader
 ```
 
-Выполните миграции
+Выполните миграции( **перед выполнением миграций обязательно указать регионы в config/gar.php** )
 
 ```shell
 php artisan migrate
@@ -47,18 +47,12 @@ php artisan gar:complete-full-import
 Дождитесь её выполнения. Время зависит от производительности вашей системы и скорости
 Интернета.
 
-Воспользуйтесь представлением **gar.gar_data_by_uuid_61** для доступа к данным
+Воспользуйтесь представлением **gar.gar_data_by_uuid_61** для доступа к данным( для каждого региона своё представление, последние две цифры - код региона )
 
 ```postgresql
 select * from gar.gar_data_by_uuid_61
 where city_name = 'Ново-Талицы'
 and street_name = '5-я Изумрудная'
-```
-Или воспользуйтесь моделью **Models\Gar\GarDataByUUID**
-
-```php
-$result = GarDataByUUID::where('house_object_guid', '=',
-    '5cef293c-745f-4053-bed6-05466f2758f4')->first();
 ```
 
 ## Обновление данных
@@ -68,6 +62,22 @@ $result = GarDataByUUID::where('house_object_guid', '=',
 ```shell
 php artisan gar:update
 ```
+
+## Изменение регионов
+
+Для того, чтобы изменить регионы, информация по которым хранится в БД, необходимо сначала, **не меняя список регионов в config/gar.php**, удалить старые миграции( **удалятся все данные из БД, которые были созданы ранее данной программой** )
+
+```shell
+php artisan migrate:rollback
+```
+
+Затем в **config/gar.php** изменить ```region_code``` на необходимый, после выполнить миграции
+
+```shell
+php artisan migrate
+```
+
+Готово, можно скачать актуальную полную выгрузку( [инструция тут](https://github.com/fname0/gar?tab=readme-ov-file#запуск-приложения) )
 
 ## Дополнительные команды
 
