@@ -73,6 +73,6 @@ class GarUpdate extends Command
             }
         }
 
-        echo "Все обновления применены";
+        echo "Все обновления применены\n";
     }
 }
