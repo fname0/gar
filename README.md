@@ -21,7 +21,7 @@ chmod -R 775 storage
 chmod -R 775 bootstrap/cache
 ```
 
-Настройте **.env**: необходимо установить ```APP_ENV=production, APP_DEBUG=false, DB_CONNECTION(=pgsql для PostgreSQL), DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD, QUEUE_CONNECTION=database``` и **config/gar.php**. Если ваша база не PostgreSQL, имя базы данных 
+Отредактируйте в **.env** ```DB_CONNECTION(=pgsql для PostgreSQL), DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD```( во избежании утечек памяти и некорректной работы не следует менять ```APP_ENV=production, APP_DEBUG=false, QUEUE_CONNECTION=database``` ) и **config/gar.php**. Если ваша база не PostgreSQL, имя базы данных 
 обязательно должно быть **gar**.
 
 Установите зависимости
